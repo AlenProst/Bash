@@ -8,7 +8,7 @@ if [[ $totalCount -gt 2 ]]
 then
 	echo "Complexity was not removed.Removint complexity..."
 	
-	sed -i 's/[success=1 default=ignore]    pam_unix.so obscure sha512/password	[success=1 default=ignore]	pam_unix.so sha512 minlen=1/g' $file
+	sed -i 's/password.*sha512/password	[success=1 default=ignore]	pam_unix.so sha512 minlen=1/g'
 	
 	echo "Complexity has been removed."
 	
@@ -18,4 +18,3 @@ else
 	
 	
 fi
-
