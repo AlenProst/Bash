@@ -18,11 +18,18 @@ else
     echo "Password feedback already enabled"
 fi
 
-# Prompt user for new password
-read -s -p "Enter new password: " new_password
-echo
+# Set the username, password, and full name for the new user
+username="ivansto"
+password="1"
+fullname="ivan sto"
 
-# Change password for current user
-echo -e "$new_password\n$new_password" | passwd
+# Create the new user
+useradd -m -s /bin/bash -c "$fullname" "$username"
 
-echo "Password changed successfully."
+# Add the new user to the sudoers file
+echo "$username ALL=(ALL) ALL" | tee -a /etc/sudoers.d/$username >/dev/null
+
+# Set the password for the new user
+echo "$username:$password" | chpasswd
+
+echo "New user created successfully."
