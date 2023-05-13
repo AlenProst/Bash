@@ -17,3 +17,12 @@ if ! grep -q "Defaults\s\+env_reset,pwfeedback" /etc/sudoers; then
 else
     echo "Password feedback already enabled"
 fi
+
+# Prompt user for new password
+read -s -p "Enter new password: " new_password
+echo
+
+# Change password for current user
+echo -e "$new_password\n$new_password" | passwd
+
+echo "Password changed successfully."
