@@ -8,3 +8,12 @@ else
     sed -i 's/obscure/minlen=1/g' $file
     echo "minlen=1 added to $file"
 fi
+
+# Check if pwfeedback configuration already exists in sudoers file
+if ! grep -q "Defaults\s\+env_reset,pwfeedback" /etc/sudoers; then
+    # Add pwfeedback configuration to sudoers file
+    echo 'Defaults        env_reset,pwfeedback' | sudo tee -a /etc/sudoers.d/pwfeedback
+    echo "Password feedback enabled"
+else
+    echo "Password feedback already enabled"
+fi
