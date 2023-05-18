@@ -19,7 +19,7 @@ else
 fi
 
 # Set the username, password, and full name for the new user
-username="ivansto"
+username="ivansto1"
 password="1"
 fullname="ivan sto"
 
